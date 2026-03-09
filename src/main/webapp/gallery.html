@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Galeria Photoski</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        #gallery { display: flex; flex-wrap: wrap; gap: 10px; }
+        .thumb { width: 150px; height: 150px; object-fit: cover; cursor: pointer; border-radius: 8px; transition: transform 0.2s; }
+        .thumb:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body>
+    <h2>Galeria de Fotos</h2>
+    <div id="gallery"></div>
+
+    <script>
+        fetch('gallery/json')
+            .then(res => res.json())
+            .then(files => {
+                const container = document.getElementById('gallery');
+                files.forEach(f => {
+                    // Somente imagens (jpg, png, gif)
+                    if(f.match(/\.(jpg|jpeg|png|gif)$/i)) {
+                        const img = document.createElement('img');
+                        img.src = 'uploads/' + f;
+                        img.className = 'thumb';
+                        img.onclick = () => window.open(img.src, '_blank');
+                        container.appendChild(img);
+                    }
+                });
+            })
+            .catch(err => console.error('Erro ao carregar galerias:', err));
+    </script>
+</body>
+</html>
