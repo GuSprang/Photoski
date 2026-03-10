@@ -1,0 +1,23 @@
+# Maven
+target/
+*.jar
+*.war
+*.ear
+
+# NetBeans
+nb-configuration.xml
+nbactions.xml
+nbproject/private/
+
+# IntelliJ
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Uploads (não versionar fotos dos usuários)
+src/main/webapp/uploads/
